@@ -51,6 +51,7 @@ export default About;
 const Wrap = styled.section`
   width: 100%;
   padding: 150px 13.54vw; // 13.54
+
   @media screen and (max-width: 1024px) {
     padding: 80px 20px;
   }
@@ -76,6 +77,7 @@ const AboutContainer = styled.div`
 
   @media screen and (max-width: 1024px) {
     width: 100%;
+    gap: 48px;
   }
 `;
 
@@ -99,7 +101,8 @@ const TextWrap = styled.div`
 
   @media screen and (max-width: 1024px) {
     width: 335px;
-    padding: 0 20px;
+    padding: 0;
+    gap: 40px;
   }
 `;
 
@@ -134,4 +137,8 @@ const TextSub = styled.div`
   font-weight: 500;
   line-height: 135%; /* 48.6px */
   letter-spacing: -0.72px;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 21px;
+  }
 `;
