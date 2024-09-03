@@ -6,7 +6,6 @@ import { styled } from "styled-components";
 const Introduce = () => {
   const { isDesktop } = useDeviceSize();
 
-  console.log(isDesktop);
   return (
     <Wrap>
       <ItroduceImg
