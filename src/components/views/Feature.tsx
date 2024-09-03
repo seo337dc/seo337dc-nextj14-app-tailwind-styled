@@ -191,9 +191,11 @@ const FeatureSub = styled.p`
 const FeatureImg = styled.img`
   width: 100%;
   height: 7.86vw; // 151px;
+  margin-top: 15px;
 
   @media screen and (max-width: 1024px) {
     height: 151px;
+    margin-top: 10px;
   }
 `;
 
