@@ -1,6 +1,6 @@
 "use client";
 
-import useDeviceSize from "@/hooks/UseDetectDeviceSize";
+import useDeviceSize from "@/hooks/useDetectDeviceSize";
 import { styled } from "styled-components";
 
 const Introduce = () => {

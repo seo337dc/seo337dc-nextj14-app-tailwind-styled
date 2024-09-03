@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import About from "@/components/views/About";
+import Feature from "@/components/views/Feature";
 import Introduce from "@/components/views/Introduce";
 import RWA from "@/components/views/RWA";
 // import MainView from "@/components/views/main";
@@ -11,6 +12,7 @@ export default function Home() {
       <Introduce />
       <About />
       <RWA />
+      <Feature />
     </main>
   );
 }
