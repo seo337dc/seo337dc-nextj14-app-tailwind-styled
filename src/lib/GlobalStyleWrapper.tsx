@@ -38,7 +38,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${Fonts.Pretendard};
     color: ${Colors.Black};
-    /* background-color: ${Colors.Black}; */
   }
   button {
       outline: none;
@@ -83,6 +82,7 @@ export default function GlobalStyleWrapper({
 }: {
   children: React.ReactNode;
 }) {
+  console.log("???");
   return (
     <>
       <GlobalStyle />
