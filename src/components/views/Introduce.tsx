@@ -8,10 +8,7 @@ const Introduce = () => {
 
   return (
     <Wrap>
-      <ItroduceImg
-        src={isDesktop ? "/introduce.png" : "introduce_mobile.png"}
-        alt="introduce"
-      />
+      <ItroduceImg src="/introduce.png" alt="introduce" />
       <ContentContainer>
         <TextTitle>
           Start your RWA project evaluation and expert investment guidance with
@@ -39,6 +36,13 @@ const Wrap = styled.section`
   width: 100%;
   height: 50.52wv;
   border: 1px solid white;
+  background: url("/introduce.png") lightgray 0% 0% / 100px 100px repeat;
+
+  @media screen and (max-width: 1024px) {
+    background: url("/introduce.png") lightgray -170.579px 15.025px / 185.642% 63.899%
+        no-repeat,
+      #000;
+  }
 `;
 
 const ItroduceImg = styled.img`
@@ -76,8 +80,6 @@ const TextTitle = styled.p`
   @media screen and (max-width: 1024px) {
     width: 315px;
     font-size: 27px;
-    border: 1px solid black;
-    color: black;
   }
 `;
 

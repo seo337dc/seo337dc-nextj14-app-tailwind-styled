@@ -1,6 +1,10 @@
 "use client";
 
 import { styled } from "styled-components";
+import { IoLogoFacebook } from "react-icons/io5";
+// import { FaFacebookF } from "react-icons/fa6";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -33,9 +37,16 @@ const Footer = () => {
           </MenuContainer>
 
           <SocialContainer>
-            <SocialImg />
-            <SocialImg />
-            <SocialImg />
+            <SocialImg>
+              <FaTwitter size={20} color="#fff" />
+            </SocialImg>
+            <SocialImg>
+              <FaFacebookF size={20} color="#fff" />
+            </SocialImg>
+
+            <SocialImg>
+              <FaInstagram size={20} color="#fff" />
+            </SocialImg>
           </SocialContainer>
         </MenuWrap>
 
@@ -50,6 +61,7 @@ const Footer = () => {
 export default Footer;
 
 const Wrap = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   padding: 7.81vw 5.72vw 1.35vw;
@@ -57,7 +69,29 @@ const Wrap = styled.div`
   justify-content: flex-end;
   align-items: center;
   gap: 8.43vw; //  162px;
-  background: #3b3b47;
+  background: linear-gradient(
+      0deg,
+      rgba(44, 44, 54, 0.43) 0%,
+      rgba(44, 44, 54, 0.43) 100%
+    ),
+    url("/footer.jpg") lightgray -38px -225px / 103.75% 210.671% no-repeat;
+
+  @media screen and (max-width: 1024px) {
+    background: linear-gradient(
+        0deg,
+        rgba(44, 44, 54, 0.43) 0%,
+        rgba(44, 44, 54, 0.43) 100%
+      ),
+      url("/footer.jpg") lightgray 50% / cover no-repeat;
+  }
+`;
+
+const BackgroundImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 const NewsWrap = styled.div`
@@ -261,8 +295,11 @@ const SocialContainer = styled.div`
 `;
 
 const SocialImg = styled.div`
-  width: 33px;
-  height: 33px;
+  width: 33px; // 컨테이너 크기를 조금 더 크게 조정
+  height: 33px; // 컨테이너 크기를 조금 더 크게 조정
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   border-radius: 50%;
   background-color: #313238;

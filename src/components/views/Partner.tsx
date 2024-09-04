@@ -2,6 +2,21 @@
 
 import styled, { keyframes } from "styled-components";
 
+type TLogos = {
+  src: string;
+  alt: string;
+};
+const paternsLogos: TLogos[] = [
+  { src: "partner_desert.png", alt: "partner_desert" },
+  { src: "partner_gate.png", alt: "partner_gate" },
+  { src: "partner_flow.png", alt: "partner_flow" },
+  { src: "partner_manna.png", alt: "partner_manna" },
+  { src: "partner_filecoin.png", alt: "partner_filecoin" },
+  { src: "partner_klaytn.png", alt: "partner_klaytn" },
+  { src: "patner_busan.png", alt: "patner_busan" },
+  { src: "partner_heesung.png", alt: "partner_heesung" },
+];
+
 const PartnerSection = () => {
   return (
     <Wrap>
@@ -20,11 +35,13 @@ const PartnerSection = () => {
       </TextSection>
 
       <LogoContainer>
-        {Array.from({ length: 40 }, (_, i) => (
-          <LogoWrap key={i}>
-            <LogoImg src={`partner_heesung.png`} alt={`partner_heesung_${i}`} />
-          </LogoWrap>
-        ))}
+        {paternsLogos
+          .concat(paternsLogos.concat(paternsLogos.concat(paternsLogos)))
+          .map((logo, i) => (
+            <LogoWrap key={`${logo.src}_${i}`}>
+              <LogoImg src={logo.src} alt={logo.alt} />
+            </LogoWrap>
+          ))}
       </LogoContainer>
     </Wrap>
   );
