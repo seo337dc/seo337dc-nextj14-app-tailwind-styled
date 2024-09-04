@@ -9,6 +9,7 @@ import RWA from "@/components/views/RWA";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Footer from "@/components/views/Footer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Feature />
       <ProjectsSection />
       <PartnerSection />
+      <Footer />
     </main>
   );
 }
