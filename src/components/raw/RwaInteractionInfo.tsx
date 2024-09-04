@@ -99,7 +99,7 @@ const DescContainer = styled.div<{ $disableDot?: boolean }>`
   width: 52.86vw;
   @media screen and (max-width: 1024px) {
     width: 90%;
-    margin-left: 10px;
+    margin-left: ${(props) => (props.$disableDot ? "0" : "10px")};
   }
 
   .description {
@@ -132,13 +132,13 @@ const KorTitle = styled.div`
   align-items: flex-start;
   flex-direction: column;
   gap: 10px;
+  width: 250px;
 
   .title_kr {
-    width: 250px;
     color: #000;
 
     font-family: Pretendard;
-    font-size: 1.56vw; //30px;
+    font-size: 1.26vw; //30px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.458vw; // 28px; /* 93.333% */

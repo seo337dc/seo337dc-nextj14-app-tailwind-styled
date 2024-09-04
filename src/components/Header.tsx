@@ -71,7 +71,6 @@ const Wrap = styled.div`
 const LogoImg = styled.img`
   width: 1.1458vw;
   height: 0.9vw;
-  border: 1px solid black;
 
   @media screen and (max-width: 1024px) {
     width: 22px;

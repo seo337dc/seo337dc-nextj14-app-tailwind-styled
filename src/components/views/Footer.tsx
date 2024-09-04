@@ -1,25 +1,33 @@
 "use client";
 
 import { styled } from "styled-components";
-import { IoLogoFacebook } from "react-icons/io5";
-// import { FaFacebookF } from "react-icons/fa6";
-import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaInstagram, FaFacebookF, FaTwitter } from "react-icons/fa";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 
 const Footer = () => {
+  const [lang] = useAtom(langAtom);
+  const obj: Record<Lang, Record<"description" | "button", string>> = {
+    [Lang.ENG]: {
+      description: `We will send you the latest RWA evaluation updates and investment information via email`,
+      button: "subscribe",
+    },
+    [Lang.KOR]: {
+      description: `최신 RWA 평가 소식과 투자 정보를 메일로 전달드립니다.`,
+      button: "구독하기",
+    },
+  };
+
   return (
     <Wrap>
       <NewsWrap>
         <NewsTitle>Newsletter</NewsTitle>
-        <NewsDesc>
-          We will send you the latest RWA evaluation updates and investment
-          information via email
-        </NewsDesc>
+        <NewsDesc>{obj[lang].description}</NewsDesc>
 
         <EmailInputWrap>
           <InputTitle>Email</InputTitle>
           <EmailInput />
-          <SubBtn>Subscribe</SubBtn>
+          <SubBtn>{obj[lang].button}</SubBtn>
         </EmailInputWrap>
       </NewsWrap>
       <ConcatWrap>

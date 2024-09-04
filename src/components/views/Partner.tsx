@@ -1,6 +1,8 @@
 "use client";
 
 import styled, { keyframes } from "styled-components";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 
 type TLogos = {
   src: string;
@@ -18,19 +20,28 @@ const paternsLogos: TLogos[] = [
 ];
 
 const PartnerSection = () => {
+  const [lang] = useAtom(langAtom);
+  const obj: Record<Lang, Record<"title" | "description", string>> = {
+    [Lang.ENG]: {
+      title: "Partners & Collaborations Section",
+      description: `List logos of major partners and institutions collaborating with the
+      Unique Asset platform.`,
+    },
+    [Lang.KOR]: {
+      title: "파트너 및 협력사",
+      description: `유니크 플랫폼과 협력하는 주요 파트너 기관입니다.`,
+    },
+  };
   return (
     <Wrap>
       <TextSection>
         <TextWrap>
           <TextTitle>
-            <span className="">Partners & Collaborations Section</span>
+            <span className="">{obj[lang].title}</span>
             <div className="line" />
           </TextTitle>
 
-          <TextSub>
-            List logos of major partners and institutions collaborating with the
-            Unique Asset platform.
-          </TextSub>
+          <TextSub>{obj[lang].description}</TextSub>
         </TextWrap>
       </TextSection>
 
@@ -75,13 +86,13 @@ const TextWrap = styled.div`
   flex-direction: column;
 
   @media screen and (max-width: 1024px) {
-    align-items: center;
+    align-items: flex-start;
   }
 `;
 
 const TextTitle = styled.div`
   display: flex;
-  align-items: center;
+
   gap: 13px;
 
   color: #000;
@@ -94,18 +105,19 @@ const TextTitle = styled.div`
   letter-spacing: -0.64px;
 
   @media screen and (max-width: 1024px) {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .line {
     margin-top: 12px;
     width: 130px;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
   }
 `;
 
 const TextSub = styled.div`
-  width: 34.37vw;
+  width: 30.04vw;
+  /* width: 404px; */
   margin-top: 15px;
   color: #0c0c0d;
 
@@ -118,7 +130,7 @@ const TextSub = styled.div`
   text-transform: capitalize;
 
   @media screen and (max-width: 1024px) {
-    width: 303px;
+    width: 300px;
     font-family: Inter;
     font-size: 25px;
     line-height: 32px; /* 128% */

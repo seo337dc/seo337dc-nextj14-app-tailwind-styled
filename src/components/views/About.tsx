@@ -17,7 +17,8 @@ const About = () => {
       description:
         "A platform dedicated to evaluating and analyzing RWA projects, helping investors make professional and safe investment decisions.",
       title2: "Our Goal",
-      description2: "",
+      description2:
+        "To become a trusted certification authority in the RWA field, providing investors with reliable and assured information to prevent reckless investments.",
     },
     [Lang.KOR]: {
       title: "유니크 에셋",
