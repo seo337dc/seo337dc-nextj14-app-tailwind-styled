@@ -7,8 +7,6 @@ import ProjectsSection from "@/components/views/Projects";
 import RWA from "@/components/views/RWA";
 // import MainView from "@/components/views/main";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/views/Footer";
 
 export default function Home() {
