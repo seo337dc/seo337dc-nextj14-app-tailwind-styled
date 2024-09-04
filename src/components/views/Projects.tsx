@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { styled } from "styled-components";
 
 const ProjectsSection = () => {
+  const [opens, setOpens] = useState({ att: false, accf: false, otn: false });
   return (
     <Wrap>
       <ProjectsContainer>
@@ -23,7 +25,7 @@ const ProjectsSection = () => {
       </ProjectsContainer>
 
       <ContentsContainer>
-        <ContentWrap>
+        <ContentWrap onClick={() => setOpens({ ...opens, att: !opens.att })}>
           <TokenImg src="/projects_ATT.png" alt="projects_ATT" />
 
           <ContentTextWrap>
@@ -31,10 +33,13 @@ const ProjectsSection = () => {
             <p className="projects_desc">tetris tower</p>
           </ContentTextWrap>
 
-          <IconSvg src="/plus_icon.png" alt="plus" />
+          <IconSvg src="/plus_icon.png" alt="plus" rotate={opens.att} />
         </ContentWrap>
 
-        <ContentWrap $isCenter={true}>
+        <ContentWrap
+          $isCenter={true}
+          onClick={() => setOpens({ ...opens, accf: !opens.accf })}
+        >
           <TokenImg src="/projects_ACCF.png" alt="projects_ACCF" />
 
           <ContentTextWrap>
@@ -42,10 +47,10 @@ const ProjectsSection = () => {
             <p className="projects_desc">ASSET Chung Chun First</p>
           </ContentTextWrap>
 
-          <IconSvg src="/plus_icon.png" alt="plus" />
+          <IconSvg src="/plus_icon.png" alt="plus" rotate={opens.accf} />
         </ContentWrap>
 
-        <ContentWrap>
+        <ContentWrap onClick={() => setOpens({ ...opens, otn: !opens.otn })}>
           <TokenImg src="/projects_OTN.png" alt="projects_OTN" />
 
           <ContentTextWrap>
@@ -53,7 +58,7 @@ const ProjectsSection = () => {
             <p className="projects_desc">Christian Ontani</p>
           </ContentTextWrap>
 
-          <IconSvg src="/plus_icon.png" alt="plus" />
+          <IconSvg src="/plus_icon.png" alt="plus" rotate={opens.otn} />
         </ContentWrap>
       </ContentsContainer>
     </Wrap>
@@ -195,6 +200,8 @@ const ContentWrap = styled.div<{ $isCenter?: boolean }>`
   margin-top: ${({ $isCenter }) =>
     $isCenter ? "40px" : "0"}; // 조건부 마진 적용
 
+  cursor: pointer;
+
   @media screen and (max-width: 1024px) {
     padding-top: 23px;
     height: 352px;
@@ -255,10 +262,13 @@ const ContentTextWrap = styled.div`
   }
 `;
 
-const IconSvg = styled.img`
+const IconSvg = styled.img<{ rotate: boolean }>`
   width: 3.02vw; //  58px; // 3.02vw; //58px;
   height: 3.02vw; // 58px; //
   cursor: pointer;
+  transition: transform 0.3s; // 부드러운 트랜지션 효과
+
+  transform: ${({ rotate }) => (rotate ? "rotate(45deg)" : "rotate(0)")};
 
   @media screen and (max-width: 1024px) {
     width: 44px;

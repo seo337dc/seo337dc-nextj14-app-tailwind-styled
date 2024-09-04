@@ -1,7 +1,20 @@
 "use client";
+import { useState } from "react";
 import { styled } from "styled-components";
+import {
+  engInteractoMethodology,
+  engInteractoProvision,
+  engInteractorCriertia,
+} from "../raw/constants";
+import RwaInteractionInfo from "../raw/RwaInteractionInfo";
 
 const RWA = () => {
+  const [opens, setOpens] = useState({
+    Criteria: false,
+    Methodology: false,
+    Provision: false,
+  });
+
   return (
     <Wrap>
       <RWAContainer>
@@ -30,19 +43,57 @@ const RWA = () => {
 
       <div className="mt-[135px] max-[1024px]:mt-[60px]">
         <InteractionLine />
-        <InteractionWrap>
-          <InteractionText>Evaluation Criteria</InteractionText>{" "}
-          <IconSvg src="/plus_icon.png" alt="plus" />
+        <InteractionWrap
+          onClick={() => setOpens({ ...opens, Criteria: !opens.Criteria })}
+        >
+          <InteractionTop>
+            <InteractionText>Evaluation Criteria</InteractionText>{" "}
+            <IconSvg src="/plus_icon.png" alt="plus" rotate={opens.Criteria} />
+          </InteractionTop>
+          {opens.Criteria && (
+            <RwaInteractionInfo interactions={engInteractorCriertia} />
+          )}
+
+          <InteractionLine />
         </InteractionWrap>
-        <InteractionWrap>
-          <InteractionText>Evaluation Methodology</InteractionText>{" "}
-          <IconSvg src="/plus_icon.png" alt="plus" />
+
+        <InteractionWrap
+          onClick={() =>
+            setOpens({ ...opens, Methodology: !opens.Methodology })
+          }
+        >
+          <InteractionTop>
+            <InteractionText>Evaluation Methodology</InteractionText>{" "}
+            <IconSvg
+              src="/plus_icon.png"
+              alt="plus"
+              rotate={opens.Methodology}
+            />
+          </InteractionTop>
+
+          {opens.Methodology && (
+            <RwaInteractionInfo interactions={engInteractoMethodology} />
+          )}
+          <InteractionLine />
         </InteractionWrap>
-        <InteractionWrap>
-          <InteractionText className="max-[1024px]:w-[184px] max-[1024px]:leading-7">
-            Report Writing & Information Provision
-          </InteractionText>{" "}
-          <IconSvg src="/plus_icon.png" alt="plus" />
+
+        <InteractionWrap
+          onClick={() => setOpens({ ...opens, Provision: !opens.Provision })}
+        >
+          <InteractionTop>
+            <InteractionText className="max-[1024px]:w-[184px] max-[1024px]:leading-7">
+              Report Writing & Information Provision
+            </InteractionText>{" "}
+            <IconSvg src="/plus_icon.png" alt="plus" rotate={opens.Provision} />
+          </InteractionTop>
+
+          {opens.Provision && (
+            <RwaInteractionInfo
+              interactions={engInteractoProvision}
+              disalbeDot={true}
+            />
+          )}
+          <InteractionLine />
         </InteractionWrap>
       </div>
     </Wrap>
@@ -165,12 +216,16 @@ const InteractionLine = styled.div`
 `;
 
 const InteractionWrap = styled.div`
+  width: 100%;
+  cursor: pointer;
+`;
+
+const InteractionTop = styled.div`
   display: flex;
   padding: 20px 10px;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-  border-bottom: 1px solid #dbdbdb;
 `;
 
 const InteractionText = styled.span`
@@ -188,13 +243,61 @@ const InteractionText = styled.span`
   }
 `;
 
-const IconSvg = styled.img`
+const IconSvg = styled.img<{ rotate: boolean }>`
   width: 58px; // 3.02vw; //58px;
-  height: 58px; //
+  height: 58px; // 동일한 크기로 설정
   cursor: pointer;
+  transition: transform 0.3s; // 부드러운 트랜지션 효과
+
+  /* 조건에 따른 회전 */
+  transform: ${({ rotate }) => (rotate ? "rotate(45deg)" : "rotate(0)")};
 
   @media screen and (max-width: 1024px) {
     width: 44px;
     height: 44px;
+  }
+`;
+
+const InteractionContainer = styled.div`
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  align-self: stretch;
+`;
+
+const InteractionInfoWrap = styled.div`
+  padding: 45px 35px;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  width: 67.7vw; // 1300px;
+  align-items: flex-start;
+  gap: 12px;
+
+  .title {
+    width: 13.02vw; // 250px;
+    color: #484848;
+
+    font-family: Inter;
+    font-size: 17px; // 0.88vw; // 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 141.176%; //  24px; /* 141.176% */
+    letter-spacing: -0.51px;
+    text-transform: capitalize;
+  }
+
+  .description {
+    width: 52.86vw;
+    color: #656565;
+    font-family: Inter;
+    font-size: 15px; // 0.78vw; // 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; // 24px; /* 160% */
+    letter-spacing: -0.15px;
+    text-transform: capitalize;
   }
 `;
