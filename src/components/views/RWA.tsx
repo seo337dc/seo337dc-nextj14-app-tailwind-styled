@@ -5,15 +5,47 @@ import {
   engInteractoMethodology,
   engInteractoProvision,
   engInteractorCriertia,
+  korInteractoMethodology,
+  korInteractoProvision,
+  korInteractorCriertia,
 } from "../raw/constants";
 import RwaInteractionInfo from "../raw/RwaInteractionInfo";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 
 const RWA = () => {
+  const [lang] = useAtom(langAtom);
   const [opens, setOpens] = useState({
     Criteria: false,
     Methodology: false,
     Provision: false,
   });
+
+  const obj: Record<
+    Lang,
+    Record<"title" | "subTitle" | "description", string>
+  > = {
+    [Lang.ENG]: {
+      title: "Evaluation Methodology",
+      subTitle: "RWA Project Evaluation Method",
+      description: `UniqueAsset platform uses a combined methodology of quantitative
+      analysis (e.g., financial statement analysis, profitability
+      calculations) and qualitative analysis (e.g., industry analysis,
+      risk assessment) to evaluate the value of RWA projects. We
+      comprehensively analyze asset liquidity, legal stability, market
+      demand and growth potential, profitability, and risk profile. Each
+      project is rated on a scale from CCC to AAA, and we transparently
+      guide our evaluation criteria and processes to ensure investors
+      have trustworthy information.`,
+    },
+    [Lang.KOR]: {
+      title: "Top-Rated RWA Projects",
+      subTitle: "RWA 주요 프로젝트",
+      description: `유니크 플랫폼에서 제공하는 주요 RWA 프로젝트 소개합니다.`,
+    },
+  };
+
+  const isKor = lang === Lang.KOR;
 
   return (
     <Wrap>
@@ -21,22 +53,12 @@ const RWA = () => {
         <RWAWrap>
           <TextWrap>
             <TextTitle>
-              <span>Evaluation Methodology</span>
+              <span>{obj[lang].title}</span>
               <div className="line" />
             </TextTitle>
 
-            <TextSub>RWA Project Evaluation Method</TextSub>
-            <TextDesc>
-              UniqueAsset platform uses a combined methodology of quantitative
-              analysis (e.g., financial statement analysis, profitability
-              calculations) and qualitative analysis (e.g., industry analysis,
-              risk assessment) to evaluate the value of RWA projects. We
-              comprehensively analyze asset liquidity, legal stability, market
-              demand and growth potential, profitability, and risk profile. Each
-              project is rated on a scale from CCC to AAA, and we transparently
-              guide our evaluation criteria and processes to ensure investors
-              have trustworthy information.
-            </TextDesc>
+            <TextSub>{obj[lang].subTitle}</TextSub>
+            <TextDesc>{obj[lang].description}</TextDesc>
           </TextWrap>
         </RWAWrap>
       </RWAContainer>
@@ -47,11 +69,17 @@ const RWA = () => {
           onClick={() => setOpens({ ...opens, Criteria: !opens.Criteria })}
         >
           <InteractionTop>
-            <InteractionText>Evaluation Criteria</InteractionText>{" "}
+            <InteractionText>
+              {isKor ? "평가 기준 Evaluation Criteria" : "Evaluation Criteria"}
+            </InteractionText>{" "}
             <IconSvg src="/plus_icon.png" alt="plus" rotate={opens.Criteria} />
           </InteractionTop>
           {opens.Criteria && (
-            <RwaInteractionInfo interactions={engInteractorCriertia} />
+            <RwaInteractionInfo
+              interactions={
+                isKor ? korInteractorCriertia : engInteractorCriertia
+              }
+            />
           )}
 
           <InteractionLine />
@@ -63,7 +91,11 @@ const RWA = () => {
           }
         >
           <InteractionTop>
-            <InteractionText>Evaluation Methodology</InteractionText>{" "}
+            <InteractionText>
+              {isKor
+                ? "분석 방법론 Evaluation Methodology"
+                : "Evaluation Methodology"}
+            </InteractionText>{" "}
             <IconSvg
               src="/plus_icon.png"
               alt="plus"
@@ -72,7 +104,11 @@ const RWA = () => {
           </InteractionTop>
 
           {opens.Methodology && (
-            <RwaInteractionInfo interactions={engInteractoMethodology} />
+            <RwaInteractionInfo
+              interactions={
+                isKor ? korInteractoMethodology : engInteractoMethodology
+              }
+            />
           )}
           <InteractionLine />
         </InteractionWrap>
@@ -89,7 +125,9 @@ const RWA = () => {
 
           {opens.Provision && (
             <RwaInteractionInfo
-              interactions={engInteractoProvision}
+              interactions={
+                isKor ? korInteractoProvision : engInteractoProvision
+              }
               disalbeDot={true}
             />
           )}
@@ -255,49 +293,5 @@ const IconSvg = styled.img<{ rotate: boolean }>`
   @media screen and (max-width: 1024px) {
     width: 44px;
     height: 44px;
-  }
-`;
-
-const InteractionContainer = styled.div`
-  display: flex;
-
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  align-self: stretch;
-`;
-
-const InteractionInfoWrap = styled.div`
-  padding: 45px 35px;
-  border-bottom: 1px solid #e6e6e6;
-  display: flex;
-  width: 67.7vw; // 1300px;
-  align-items: flex-start;
-  gap: 12px;
-
-  .title {
-    width: 13.02vw; // 250px;
-    color: #484848;
-
-    font-family: Inter;
-    font-size: 17px; // 0.88vw; // 17px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 141.176%; //  24px; /* 141.176% */
-    letter-spacing: -0.51px;
-    text-transform: capitalize;
-  }
-
-  .description {
-    width: 52.86vw;
-    color: #656565;
-    font-family: Inter;
-    font-size: 15px; // 0.78vw; // 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%; // 24px; /* 160% */
-    letter-spacing: -0.15px;
-    text-transform: capitalize;
   }
 `;

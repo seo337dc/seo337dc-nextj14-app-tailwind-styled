@@ -2,24 +2,42 @@
 
 import { useState } from "react";
 import { styled } from "styled-components";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 
 const ProjectsSection = () => {
+  const [lang] = useAtom(langAtom);
   const [opens, setOpens] = useState({ att: false, accf: false, otn: false });
+
+  const obj: Record<
+    Lang,
+    Record<"title" | "subTitle" | "description", string>
+  > = {
+    [Lang.ENG]: {
+      title: "Project",
+      subTitle: "Top-Rated RWA Projects",
+      description: "Introduce key RWA projects provided on the platform.",
+    },
+    [Lang.KOR]: {
+      title: "Top-Rated RWA Projects",
+      subTitle: "RWA 주요 프로젝트",
+      description: `유니크 플랫폼에서 제공하는 주요 RWA 프로젝트 소개합니다.`,
+    },
+  };
+
   return (
     <Wrap>
       <ProjectsContainer>
         <ProjectsWrap>
           <TextWrap>
             <TextTitle>
-              <span>Projects</span>
+              <span>{obj[lang].title}</span>
               <div className="line" />
             </TextTitle>
 
-            <TextSub>Top-Rated RWA Projects</TextSub>
+            <TextSub>{obj[lang].subTitle}</TextSub>
 
-            <TextDesc>
-              Introduce key RWA projects provided on the platform.
-            </TextDesc>
+            <TextDesc>{obj[lang].description}</TextDesc>
           </TextWrap>
         </ProjectsWrap>
       </ProjectsContainer>

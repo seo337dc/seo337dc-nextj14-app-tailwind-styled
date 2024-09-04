@@ -1,9 +1,35 @@
 "use client";
 import useDeviceSize from "@/hooks/useDetectDeviceSize";
 import { styled } from "styled-components";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 
 const About = () => {
   const { isDesktop } = useDeviceSize();
+  const [lang] = useAtom(langAtom);
+
+  const obj: Record<
+    Lang,
+    Record<"title" | "description" | "title2" | "description2", string>
+  > = {
+    [Lang.ENG]: {
+      title: "UniqueAsset",
+      description:
+        "A platform dedicated to evaluating and analyzing RWA projects, helping investors make professional and safe investment decisions.",
+      title2: "Our Goal",
+      description2: "",
+    },
+    [Lang.KOR]: {
+      title: "유니크 에셋",
+      description: `유니크 에셋은 RWA 프로젝트들을 
+        평가하고 분석하여, 전문적이고 안전한 투자 결정을 
+        내릴 수 있도록 돕습니다.`,
+      title2: "우리의 목표",
+      description2: `RWA 분야에서 공신력 있는 인증 기관이 되어, 
+      투자자들에게 확실하고 신뢰할 수 있는 정보를 제공하여
+      무분별한 투자를 방지하는 것입니다.`,
+    },
+  };
 
   return (
     <Wrap>
@@ -11,14 +37,11 @@ const About = () => {
         <AboutWrap>
           <TextWrap>
             <TextTitle>
-              <span>UniqueAsset</span>
+              <span>{obj[lang].title}</span>
               <div className="line" />
             </TextTitle>
 
-            <TextSub>
-              A platform dedicated to evaluating and analyzing RWA projects,
-              helping investors make professional and safe investment decisions.
-            </TextSub>
+            <TextSub>{obj[lang].description}</TextSub>
           </TextWrap>
         </AboutWrap>
 
@@ -30,15 +53,11 @@ const About = () => {
         <AboutWrap $isRight={true}>
           <TextWrap>
             <TextTitle>
-              <span>Our Goal</span>
+              <span>{obj[lang].title2}</span>
               <div className="line" />
             </TextTitle>
 
-            <TextSub>
-              To become a trusted certification authority in the RWA field,
-              providing investors with reliable and assured information to
-              prevent reckless investments.
-            </TextSub>
+            <TextSub>{obj[lang].description2}</TextSub>
           </TextWrap>
         </AboutWrap>
       </AboutContainer>

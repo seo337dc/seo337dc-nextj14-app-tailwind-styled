@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Provider } from "jotai";
 import "./globals.css";
 
 import StyledComponentsRegistry from "../lib/StyledComponentsRegistry";
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledComponentsRegistry>
-          <GlobalStyleWrapper>{children}</GlobalStyleWrapper>
-        </StyledComponentsRegistry>
+        <Provider>
+          <StyledComponentsRegistry>
+            <GlobalStyleWrapper>{children}</GlobalStyleWrapper>
+          </StyledComponentsRegistry>
+        </Provider>
       </body>
     </html>
   );

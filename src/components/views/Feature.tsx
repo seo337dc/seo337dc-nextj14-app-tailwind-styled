@@ -1,8 +1,77 @@
 "use client";
 
 import { styled } from "styled-components";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 
 const Feature = () => {
+  const [lang] = useAtom(langAtom);
+
+  const obj: Record<Lang, Record<"title", string>> = {
+    [Lang.ENG]: {
+      title: "Platform Key Features",
+    },
+    [Lang.KOR]: {
+      title: "플랫폼 주요 기능",
+    },
+  };
+
+  const objFeature1: Record<
+    Lang,
+    Record<"title" | "subTitle" | "description", string>
+  > = {
+    [Lang.ENG]: {
+      title: "RWA Projects",
+      subTitle: "Search and Evaluation",
+      description: `Users can search for RWA projects of interest and check their
+      evaluation grades and detailed information, including project value
+      assessments, analysis methods, and related reports.`,
+    },
+    [Lang.KOR]: {
+      title: "RWA 프로젝트 검색 및 평가 정보 제공",
+      subTitle: "",
+      description: `Users can search for RWA projects of interest and check their
+      evaluation grades and detailed information, including project value
+      assessments, analysis methods, and related reports.`,
+    },
+  };
+
+  const objFeature2: Record<
+    Lang,
+    Record<"title" | "subTitle" | "description", string>
+  > = {
+    [Lang.ENG]: {
+      title: "Real-time Evaluation ",
+      subTitle: "Updates and Monitoring",
+      description: `Users can search for RWA projects of interest and check their
+    evaluation grades and detailed information, including project value
+    assessments, analysis methods, and related reports.`,
+    },
+    [Lang.KOR]: {
+      title: "실시간 평가 업데이트 및 모니터링",
+      subTitle: "",
+      description: `Users can search for RWA projects of interest and check their
+    evaluation grades and detailed information, including project value
+    assessments, analysis methods, and related reports.`,
+    },
+  };
+
+  const objFeature3: Record<
+    Lang,
+    Record<"title" | "subTitle" | "description", string>
+  > = {
+    [Lang.ENG]: {
+      title: "Customized Investment ",
+      subTitle: "Analysis and Recommendations",
+      description: `Users receive customized analysis reports tailored to their investment preferences, along with investment recommendations based on these reports.`,
+    },
+    [Lang.KOR]: {
+      title: "플랫폼 주요 기능",
+      subTitle: "",
+      description: `사용자는 자신의 투자 성향에 맞춰 맞춤형 분석 리포트를 제공받고, 이를 기반으로 한 투자 추천을 받을 수 있습니다.`,
+    },
+  };
+
   return (
     <Wrap>
       <FeatureContainer>
@@ -13,7 +82,7 @@ const Feature = () => {
               <div className="line" />
             </TextTitle>
 
-            <TextSub>Platform Key Features</TextSub>
+            <TextSub>{obj[lang].title}</TextSub>
           </TextWrap>
         </FeatureWrap>
       </FeatureContainer>
@@ -23,51 +92,45 @@ const Feature = () => {
           <div className="flex gap-1">
             <span>1.</span>
             <div>
-              <p>RWA Project</p>
-              <FeatureSub>Search and Evaluation</FeatureSub>
+              <p>{objFeature1[lang].title}</p>
+              <FeatureSub>{objFeature1[lang].subTitle}</FeatureSub>
             </div>
           </div>
 
           <FeatureImg src="/feature_rwa.png" alt="feature_rwa" />
-          <FeatureDesc>
-            Users can search for RWA projects of interest and check their
-            evaluation grades and detailed information, including project value
-            assessments, analysis methods, and related reports.
-          </FeatureDesc>
+          {objFeature1[lang].description && (
+            <FeatureDesc>{objFeature1[lang].description}</FeatureDesc>
+          )}
         </FeatureCard>
 
         <FeatureCard>
           <div className="flex gap-1">
             <span>2.</span>
             <div>
-              <p>Real-time Evaluation</p>
-              <FeatureSub>Updates and Monitoring</FeatureSub>
+              <p>{objFeature2[lang].title}</p>
+              <FeatureSub>{objFeature2[lang].subTitle}</FeatureSub>
             </div>
           </div>
 
           <FeatureImg src="/feature_monitoring.png" alt="feature_monitoring" />
-          <FeatureDesc>
-            The status and ratings of evaluated RWA projects are updated in
-            real-time, allowing users to monitor and make optimal investment
-            decisions.
-          </FeatureDesc>
+          {objFeature1[lang].description && (
+            <FeatureDesc>{objFeature1[lang].description}</FeatureDesc>
+          )}
         </FeatureCard>
 
         <FeatureCard>
           <div className="flex gap-1">
             <span>3.</span>
             <div>
-              <p>Customized Investment </p>
-              <FeatureSub>Analysis and Recommendations</FeatureSub>
+              <p>{objFeature3[lang].title}</p>
+              {objFeature3[lang].subTitle && (
+                <FeatureSub>{objFeature3[lang].subTitle}</FeatureSub>
+              )}
             </div>
           </div>
 
           <FeatureImg src="/feature_custom.png" alt="feature_custom" />
-          <FeatureDesc>
-            Users receive customized analysis reports tailored to their
-            investment preferences, along with investment recommendations based
-            on these reports.
-          </FeatureDesc>
+          <FeatureDesc>{objFeature1[lang].description}</FeatureDesc>
         </FeatureCard>
       </div>
     </Wrap>

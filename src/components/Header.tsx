@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { styled } from "styled-components";
+import { useAtom } from "jotai";
 import { getMediaQueryCSS } from "@/common/util";
+import { Lang, langAtom } from "@/store/langStore";
 
 const Header = () => {
-  const [isKo, setIsKo] = useState<boolean>(true);
+  const [lang, setLang] = useAtom(langAtom);
 
-  const handleClickLang = () => setIsKo(!isKo);
+  const handleClickLang = () => {
+    if (lang === Lang.KOR) {
+      setLang(Lang.ENG);
+    } else {
+      setLang(Lang.KOR);
+    }
+  };
 
   return (
     <Wrap>
@@ -24,10 +31,10 @@ const Header = () => {
       </MenuContainer>
 
       <div className="flex gap-1">
-        <Switch $selected={isKo} onClick={handleClickLang}>
+        <Switch $selected={lang === Lang.KOR} onClick={handleClickLang}>
           KR
         </Switch>
-        <Switch $selected={!isKo} onClick={handleClickLang}>
+        <Switch $selected={lang === Lang.ENG} onClick={handleClickLang}>
           EN
         </Switch>
       </div>

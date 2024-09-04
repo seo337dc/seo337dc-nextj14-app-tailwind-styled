@@ -8,18 +8,21 @@ import RWA from "@/components/views/RWA";
 // import MainView from "@/components/views/main";
 
 import Footer from "@/components/views/Footer";
+import Layout from "@/components/common/Layout";
 
 export default function Home() {
   return (
-    <main className="relative max-[1024px]:overflow-hidden">
-      <Header />
-      <Introduce />
-      <About />
-      <RWA />
-      <Feature />
-      <ProjectsSection />
-      <PartnerSection />
-      <Footer />
-    </main>
+    <Layout>
+      <main className="relative max-[1024px]:overflow-hidden">
+        <Header />
+        <Introduce />
+        <About />
+        <RWA />
+        <Feature />
+        <ProjectsSection />
+        <PartnerSection />
+        <Footer />
+      </main>
+    </Layout>
   );
 }

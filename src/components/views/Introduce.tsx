@@ -1,27 +1,44 @@
 "use client";
 
 import useDeviceSize from "@/hooks/useDetectDeviceSize";
-import { styled } from "styled-components";
 
+import { styled } from "styled-components";
+import { useAtom } from "jotai";
+import { Lang, langAtom } from "@/store/langStore";
 const Introduce = () => {
+  const [lang] = useAtom(langAtom);
   const { isDesktop } = useDeviceSize();
+
+  const obj: Record<
+    Lang,
+    Record<"title" | "description" | "button", string>
+  > = {
+    [Lang.ENG]: {
+      title:
+        "Start your RWA project evaluation and expert investment guidance with the UniqueAsset platform",
+      description:
+        "The UniqueAsset platform analyzes various RWA projects, providing safe and reliable investment information",
+      button: "More View",
+    },
+    [Lang.KOR]: {
+      title:
+        "RWA 프로젝트 평가와 전문성 있는 투자 가이드, UniqueAsset 시작하세요.",
+      description:
+        "UniqueAsset플랫폼은 다양한 RWA 프로젝트를 분석하여, 안전하고 신뢰할 수 있는 투자 정보를 제공합니다.",
+      button: "더 알아보기",
+    },
+  };
 
   return (
     <Wrap>
       <ItroduceImg src="/introduce.png" alt="introduce" />
       <ContentContainer>
-        <TextTitle>
-          Start your RWA project evaluation and expert investment guidance with
-          the UniqueAsset platform
-        </TextTitle>
+        <TextTitle>{obj[lang].title}</TextTitle>
 
-        <TextSub>
-          The UniqueAsset platform analyzes various RWA projects, providing safe
-          and reliable investment information
-        </TextSub>
+        <TextSub>{obj[lang].description}</TextSub>
 
         <MoreViewBtn>
-          <span>More View</span>
+          <span>{obj[lang].button}</span>
           <RightArrow src="/right_icon.png" alt="right_icon" />
         </MoreViewBtn>
       </ContentContainer>
