@@ -42,7 +42,22 @@ const About = () => {
               <div className="line" />
             </TextTitle>
 
-            <TextSub>{obj[lang].description}</TextSub>
+            <TextSub>
+              {lang === Lang.ENG && (
+                <>
+                  A platform dedicated to evaluating and analyzing RWA projects,
+                  helping investors make professional and{" "}
+                  <span className="blue">safe investment decisions.</span>
+                </>
+              )}
+              {lang === Lang.KOR && (
+                <>
+                  유니크 에셋은 RWA 프로젝트들을 평가하고 분석하여, 전문적이고{" "}
+                  <span className="blue">안전한 투자 결정</span>을 내릴 수
+                  있도록 돕습니다.
+                </>
+              )}
+            </TextSub>
           </TextWrap>
         </AboutWrap>
 
@@ -58,7 +73,24 @@ const About = () => {
               <div className="line" />
             </TextTitle>
 
-            <TextSub>{obj[lang].description2}</TextSub>
+            <TextSub>
+              {lang === Lang.ENG && (
+                <>
+                  To become a trusted certification authority in the RWA field,
+                  providing investors with{" "}
+                  <span className="blue">reliable and assured information</span>{" "}
+                  to prevent reckless investments.
+                </>
+              )}
+
+              {lang === Lang.KOR && (
+                <>
+                  RWA 분야에서 공신력 있는 인증 기관이 되어, 투자자들에게{" "}
+                  <span className="blue">확실하고 신뢰할 수 있는 정보</span>를
+                  제공하여 무분별한 투자를 방지하는 것입니다.
+                </>
+              )}
+            </TextSub>
           </TextWrap>
         </AboutWrap>
       </AboutContainer>
@@ -157,6 +189,10 @@ const TextSub = styled.div`
   font-weight: 500;
   line-height: 135%; /* 48.6px */
   letter-spacing: -0.72px;
+
+  .blue {
+    color: #1855be;
+  }
 
   @media screen and (max-width: 1024px) {
     font-size: 21px;

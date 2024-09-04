@@ -90,7 +90,7 @@ const Wrap = styled.div`
         rgba(44, 44, 54, 0.43) 0%,
         rgba(44, 44, 54, 0.43) 100%
       ),
-      url("/footer.jpg") lightgray 50% / cover no-repeat;
+      url("/footer_m.jpg") lightgray 50% / cover no-repeat;
   }
 `;
 

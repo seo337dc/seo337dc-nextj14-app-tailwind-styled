@@ -8,14 +8,6 @@ import { Lang, langAtom } from "@/store/langStore";
 const Header = () => {
   const [lang, setLang] = useAtom(langAtom);
 
-  const handleClickLang = () => {
-    if (lang === Lang.KOR) {
-      setLang(Lang.ENG);
-    } else {
-      setLang(Lang.KOR);
-    }
-  };
-
   return (
     <Wrap>
       <div className="flex items-center gap-[2px]">
@@ -31,10 +23,10 @@ const Header = () => {
       </MenuContainer>
 
       <div className="flex gap-1">
-        <Switch $selected={lang === Lang.KOR} onClick={handleClickLang}>
+        <Switch $selected={lang === Lang.KOR} onClick={() => setLang(Lang.KOR)}>
           KR
         </Switch>
-        <Switch $selected={lang === Lang.ENG} onClick={handleClickLang}>
+        <Switch $selected={lang === Lang.ENG} onClick={() => setLang(Lang.ENG)}>
           EN
         </Switch>
       </div>
@@ -110,8 +102,8 @@ const MenuText = styled.span`
 `;
 
 const Switch = styled.div<{ $selected: boolean }>`
-  width: 3.33vw;
-  padding: 10px 22px;
+  width: 80px;
+  padding: 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,6 +120,7 @@ const Switch = styled.div<{ $selected: boolean }>`
   border-radius: 999px;
   background: ${({ $selected }) => ($selected ? "#1855be" : "none")};
   border: ${({ $selected }) => ($selected ? "none" : "1px solid #fff")};
+  cursor: pointer;
 
   @media screen and (max-width: 1024px) {
     height: 32px;

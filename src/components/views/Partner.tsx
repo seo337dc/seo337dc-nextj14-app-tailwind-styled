@@ -41,13 +41,35 @@ const PartnerSection = () => {
             <div className="line" />
           </TextTitle>
 
-          <TextSub>{obj[lang].description}</TextSub>
+          <TextSub>
+            {lang === Lang.ENG && (
+              <>
+                List logos of{" "}
+                <span className="blue">
+                  major partners and institutions collaborating
+                </span>{" "}
+                with the Unique Asset platform.
+              </>
+            )}
+
+            {lang === Lang.KOR && (
+              <div className="flex flex-col">
+                유니크 플랫폼과 협력하는{" "}
+                <div>
+                  <span className="blue">주요 파트너 기관</span>입니다.
+                </div>
+              </div>
+            )}
+          </TextSub>
         </TextWrap>
       </TextSection>
 
       <LogoContainer>
         {paternsLogos
-          .concat(paternsLogos.concat(paternsLogos.concat(paternsLogos)))
+          .concat(paternsLogos)
+          .concat(paternsLogos)
+          .concat(paternsLogos)
+          .concat(paternsLogos)
           .map((logo, i) => (
             <LogoWrap key={`${logo.src}_${i}`}>
               <LogoImg src={logo.src} alt={logo.alt} />
@@ -116,7 +138,7 @@ const TextTitle = styled.div`
 `;
 
 const TextSub = styled.div`
-  width: 30.04vw;
+  /* width: 30.04vw; */
   /* width: 404px; */
   margin-top: 15px;
   color: #0c0c0d;
@@ -128,6 +150,10 @@ const TextSub = styled.div`
   line-height: 2.86vw; // 60px; /* 120% */
   letter-spacing: -2px;
   text-transform: capitalize;
+
+  .blue {
+    color: #1855be;
+  }
 
   @media screen and (max-width: 1024px) {
     width: 300px;
