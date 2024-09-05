@@ -84,7 +84,6 @@ const Wrap = styled.section`
   position: relative;
   width: 100%;
   height: 50.52wv;
-  border: 1px solid white;
   background: url("/introduce.png") lightgray 0% 0% / 100px 100px repeat;
 
   @media screen and (max-width: 1024px) {
@@ -117,7 +116,6 @@ const ContentContainer = styled.div`
 `;
 
 const TextTitle = styled.div<{ $isKor: boolean }>`
-  border: 1px solid white;
   width: ${({ $isKor }) => ($isKor ? "676px" : "807px")};
   color: #fff;
   font-family: Inter;
