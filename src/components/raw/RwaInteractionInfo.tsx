@@ -21,8 +21,8 @@ const RwaInteractionInfo = ({ interactions, disalbeDot }: TProps) => {
   const isKor = lang === Lang.KOR;
   return (
     <InteractionContainer>
-      {interactions.map((interaction) => (
-        <InteractionInfoWrap>
+      {interactions.map((interaction, index) => (
+        <InteractionInfoWrap key={`${interaction.title}_${index}`}>
           {isKor ? (
             <KorTitle>
               <span className="title_kr">{interaction.title}</span>
